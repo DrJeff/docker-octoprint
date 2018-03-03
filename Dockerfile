@@ -10,12 +10,12 @@ RUN apt-get update && apt-get install -y -q python-pip python-dev git \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
                     && wget http://sourceforge.net/code-snapshots/svn/m/mj/mjpg-streamer/code/mjpg-streamer-code-182.zip \
-	                  && echo "Installing mjpg-streamer" \
-                  	&& unzip mjpg-streamer-code-182.zip \
-                  	&& cd mjpg-streamer-code-182/mjpg-streamer \
-	                  && make \
-	                  && make install \
-                   	&& cd ../.. \
+	            && echo "Installing mjpg-streamer" \
+                    && unzip mjpg-streamer-code-182.zip \
+                    && cd mjpg-streamer-code-182/mjpg-streamer \
+	            && make \
+	            && make install \
+                    && cd ../.. \
 
 ##startup scripts  
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
