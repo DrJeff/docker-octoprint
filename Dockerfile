@@ -9,13 +9,12 @@ RUN apt-get update && apt-get install -y -q python-pip python-dev git \
                     && apt-get clean \
                     && rm -rf /tmp/* /var/tmp/*  \
                     && rm -rf /var/lib/apt/lists/*
-                    && wget http://sourceforge.net/code-snapshots/svn/m/mj/mjpg-streamer/code/mjpg-streamer-code-182.zip \
-	            && echo "Installing mjpg-streamer" \
-                    && unzip mjpg-streamer-code-182.zip \
-                    && cd mjpg-streamer-code-182/mjpg-streamer \
-	            && make \
-	            && make install \
-                    && cd ../.. \
+                    
+# Compile and install ffmpeg from source
+RUN git clone https://github.com/FFmpeg/FFmpeg /root/ffmpeg && \
+    cd /root/ffmpeg && \
+    ./configure --enable-nonfree --disable-shared --extra-cflags=-I/usr/local/include && \
+    make -j8 && make install -j8
 
 ##startup scripts  
 #Pre-config scrip that maybe need to be run one time only when the container run the first time .. using a flag to don't 
